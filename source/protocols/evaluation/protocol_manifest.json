@@ -1,0 +1,88 @@
+{
+  "API_calls": 0,
+  "D5_secondary_only": true,
+  "Judge_calls": 0,
+  "Judge_endpoint_read": false,
+  "Judge_provider_selected": false,
+  "Judge_worklist_constructed": false,
+  "artifact_hashes": {
+    "analysis_decisions.json": "919cbec80948e666c66110da33ac79e50cabaf726ab26347b78e2043cdc96398",
+    "human_validation_protocol_v1.json": "13a90171fcb07fd3b7ec2792c17da70eeb7de354f84091030500a31740bb498a",
+    "judge_input_contract_v1.json": "8772836e6360aeb234fafcbcf47f6d322b9e63947769c8e310fd7cf0c7856b89",
+    "judge_rubric.json": "6cc1236d0887f828781fe2f17777b793dbb65ec6363ef724912cf1fc63343991",
+    "parent_artifact_hashes.json": "10c54fbd0c717cfb017f2f114dd10065d8885619682560effec1d440fa1876e1"
+  },
+  "bootstrap_replicates": 5000,
+  "bootstrap_seed": 42,
+  "checksums_scope": "All output artifacts including manifest; checksums.sha256 excludes itself.",
+  "commit_marker": "protocol_manifest.json written last after payload/hash verification and parent revalidation.",
+  "confirmatory_test_counts": {
+    "RQ1": 5,
+    "RQ2": 3,
+    "RQ3": 1,
+    "RQ4": 2
+  },
+  "delta_Q": 0.25,
+  "deterministic_serialization": "UTF-8, sorted JSON keys, indent 2, ASCII escapes, LF; no runtime wall-clock fields.",
+  "generation_calls": 0,
+  "generation_integrity_references": {
+    "Experiment_1": {
+      "audit": "inputs/generation_outputs_integrity_audit_v4_reconciled/formal_integrity_audit_reconciled.json",
+      "canonical_sha256": "54e6deccc71ec007dd37281313e4dacfbe9f854530e7a536fa2f7529ab48138a",
+      "status": "PASS_WITH_DOCUMENTED_POST_FREEZE_LOG_APPEND",
+      "strict_original_freeze_hash_chain": "FAIL"
+    },
+    "Phase2B2": {
+      "canonical_sha256": "be63612bd027947b3f293f6044d306c8f9cd2d3a3cfb35cd4b6f27eeda09f97e",
+      "manifest": "inputs/generation_outputs_phase2b2_gpt54_v1_final_merged/protocol_manifest.json",
+      "note": "Source includes historical reuse conventions; no new Judge worklist is constructed here.",
+      "source_rows": 17472,
+      "status": "PHASE2B2_FINAL_GENERATION_INTEGRITY_PASS_WITH_DOCUMENTED_TRANSPORT_UNCERTAINTY"
+    },
+    "Semantic_B8": {
+      "audit": "inputs/generation_outputs_semantic_b8_gpt54_v1_final_integrity_audit/final_integrity_audit.json",
+      "canonical_sha256": "3eb7891dcc37a2a92bcd0f6bc96de12c981ff079aaacd09d3b6e7e774be68d06",
+      "rows": 3824,
+      "status": "SEMANTIC_B8_FINAL_GENERATION_INTEGRITY_PASS_WITH_DOCUMENTED_TRANSPORT_UNCERTAINTY"
+    },
+    "historical_failures_and_transport_uncertainty_preserved": true,
+    "response_files_access_mode": "Opaque streaming byte hashes and newline counts only; no response JSON/text interpretation."
+  },
+  "generation_or_Judge_execution_authorized": false,
+  "human_subset_constructed": false,
+  "human_validation_N": 120,
+  "human_validation_seed": 20260912,
+  "no_clobber": true,
+  "parent_manifest_hashes": {
+    "inputs/generation_outputs_phase2b2_gpt54_v1_final_merged/protocol_manifest.json": "a21bd78585af2989b2cb67e2b068aec45219067a1cab83adcd71c14442393e50",
+    "inputs/generation_outputs_semantic_b8_gpt54_v1_final_integrity_audit/final_integrity_audit.json": "86a00d12af9541dcba9263eadf514dfdb55f62ebed35212c2de04e209665f2b0",
+    "inputs/generation_outputs_semantic_b8_gpt54_v1_final_merged/protocol_manifest.json": "f5807a62257f9adec6e8deefa8229a2385226fe5c981edb3f513fd3c0e022fec",
+    "protocols/construct_definition/protocol_manifest.json": "5af93f5d66267cb65b8751f4b7dad2946b0fe9a04d34fa99aebaadd24331e27c",
+    "protocols/analysis_scope/protocol_manifest.json": "bc40e58c2dea00cec92c74676a06a7769f5cd5fa9d5c5dc1e586bfdbfed4c0c1",
+    "protocols/token_scope/protocol_manifest.json": "f186fc0a9b8fbafa0b9c2a220cf223e007b1c4c9f775db2e263f9be0d9cceaa5",
+    "protocols/construct_scope/protocol_manifest.json": "27d1b4c1c2d2fe31846bfed73b4ba810c8615421b9287132136a5350767bbbf3",
+    "protocols/mechanism_groups/protocol_manifest.json": "6c9a9b307aa317f06d6484dafca7242cec3fe15363033ddab9cdbe858a307ab2"
+  },
+  "partial_output_policy": "STOP and preserve any partial directory; never repair, overwrite or delete.",
+  "pre_quality_attestation": {
+    "Judge_calls": 0,
+    "Judge_scores_seen": false,
+    "basis": "User pre-Judge attestation plus offline code/freeze scope; global absence is not independently proven.",
+    "confirmatory_families_selected_before_Judge": true,
+    "delta_selected_before_Judge": true,
+    "existing_generation_modified": false,
+    "global_absence_independently_proven": false,
+    "human_sampling_rule_selected_before_Judge": true,
+    "quality_evaluation_performed": false,
+    "quality_results_seen": false,
+    "scientific_generation_protocol_changed": false,
+    "selector_changed": false
+  },
+  "primary_Q": "(D1+D2+D3+D4)/4",
+  "protocol_name": "evaluation_protocol",
+  "relationship": "Additive pre-Judge finalization of rubric/scale, test details, families and human rule. All older freezes, historical statuses and scientific generation protocols remain unchanged.",
+  "script_path": "experiments/freeze_evaluation.py",
+  "script_sha256": "56c95e2d68dfcbcb727572eb0af69827b5afe5d02d8ce0d2076a5006104a535b",
+  "status": "EVALUATION_PROTOCOL_V1_FROZEN",
+  "version": "v1"
+}

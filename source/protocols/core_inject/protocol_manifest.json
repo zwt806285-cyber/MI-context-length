@@ -1,0 +1,22 @@
+{
+  "analysis_protocol_sha256": "f0979ad6be054c64ed66541035c460cd615db29eac7f05d9baff022130ac5ce9",
+  "api_calls": 0,
+  "bootstrap_replicates": 5000,
+  "bootstrap_seed": 42,
+  "cohort": "semantic_missed",
+  "coreinject_source_sha256": "db3e23b456298454bc9c10760599f76213005a88bb1c2331539c2ea579846ad9",
+  "dependence_cluster": "transcript_id",
+  "holm_adjustment": false,
+  "judge_calls": 0,
+  "outcome_aggregate_computed": false,
+  "paired_effect_computed": false,
+  "primary_contrast": "CoreInject-B8 minus Semantic-B8",
+  "semantic_binding_rows": 863,
+  "semantic_binding_sha256": "34d52666edf4456cfcfcaa7bc645169e5346164393072c81b169b92c0dde2557",
+  "semantic_source": "inputs/judge_analysis/base_scores.jsonl",
+  "semantic_source_sha256": "806f50def8c05e8d7e4d6d1b3c5d76c22d35c348eb44ee50cb07e1e4042d3718",
+  "statistical_test_performed": false,
+  "status": "CORE_INJECT_B8_PHASE_D6_V2_STATISTICAL_PROTOCOL_FREEZE_PASS",
+  "targets": 863,
+  "transcript_clusters": 101
+}

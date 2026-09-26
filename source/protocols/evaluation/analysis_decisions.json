@@ -1,0 +1,362 @@
+{
+  "U_is": "Q for target i, condition s",
+  "bootstrap_test_details": {
+    "Holm": "Within each frozen RQ family, sort raw p ascending (ties by listed contrast order). p_adj(j)=min(1,max_{l<=j}((m-l+1)*p_(l))). NI passes iff theta_hat > -0.25 and p_adj <= 0.05.",
+    "NI_alternative": "theta > -0.25",
+    "NI_boundary_distribution": "theta_null_b = -0.25 + e_b; count theta_null_b >= observed theta_hat.",
+    "NI_compatible_lower_bound": "Invert the same centered-bootstrap upper-tail test at the applicable alpha; not the ordinary two-sided percentile effect interval.",
+    "NI_from_nonsignificance_forbidden": true,
+    "NI_method": "One-sided null-boundary-centered paired transcript-cluster bootstrap test.",
+    "NI_null": "theta <= -0.25",
+    "NI_raw_p": "(1 + count(e_b >= theta_hat + 0.25)) / 5001",
+    "RQ2_RQ4_method": "Two-sided null-centered transcript-cluster bootstrap.",
+    "RQ2_RQ4_raw_p": "(1 + count(abs(e_b) >= abs(theta_hat))) / 5001",
+    "cluster_population": "All transcript clusters in the shared_16 primary population. Preserve complete eligible targets, fixed condition vectors and fixed group labels with cluster multiplicity.",
+    "completion_of_previously_pending_scale_dependent_test_details": true,
+    "construct_cluster_duplicates": "Preserve each target condition vector and cluster multiplicity; use equivalent frequency weights or distinct replicated target IDs, not deduplication.",
+    "draw_algorithm": "Sort transcript_id numerically. NumPy Generator(PCG64(42)); draw G integer indices in [0,G) with replacement per replicate, b=1..5000. Use shared draws across all estimands and conditions.",
+    "effect_interval": "Ordinary two-sided [2.5%,97.5%] percentile interval of theta_star; linear interpolation (type 7). Report separately from NI decision.",
+    "familywise_alpha": 0.05,
+    "mechanism_groups": "Compute both group-specific paired means within each shared cluster draw, then subtract. Do not independently resample groups. Empty-group replicates are undefined, must be counted/reported, and must never be assigned zero or silently redrawn.",
+    "non_estimable_policy": "If point estimate or any replicate is undefined, report counts/reasons and support, never replace with zero or redraw. That confirmatory test is NON_ESTIMABLE and cannot pass; use p=1 only as a conservative multiplicity placeholder, not an estimated p-value, keeping full family size. Valid-replicate percentile summaries may be descriptive only and must state their denominator.",
+    "point_estimate_symbol": "theta_hat: paired mean difference, group interaction difference, or beta_M as applicable.",
+    "replicate_error": "e_b = theta_star_b - theta_hat; refit the entire fixed construct model per replicate.",
+    "replicates": 5000,
+    "seed": 42,
+    "ties": "Inclusive >= in tail counts; plus-one finite simulation correction."
+  },
+  "comparison": "non_inferiority_not_two_sided_equivalence",
+  "confirmatory_families": {
+    "RQ1": {
+      "argmax_Q_forbidden": true,
+      "contrasts": [
+        "1-Full",
+        "2-Full",
+        "4-Full",
+        "8-Full",
+        "16-Full"
+      ],
+      "k_star": "Smallest finite k in [1,2,4,8,16] passing NI after Holm across all five tests.",
+      "n_confirmatory_tests": 5,
+      "name": "Context Sufficiency",
+      "no_qualifier": "NO_FINITE_QUALIFIER",
+      "secondary_descriptive": [
+        "2-1",
+        "4-2",
+        "8-4",
+        "16-8",
+        "Full-16"
+      ],
+      "test_type": "one_sided_non_inferiority"
+    },
+    "RQ2": {
+      "contrasts": [
+        "PredictedMI-B8 - Semantic-B8",
+        "OracleMI-B8 - Semantic-B8",
+        "beta_M"
+      ],
+      "n_confirmatory_tests": 3,
+      "name": "MI-process utility beyond generic semantic relevance",
+      "positive_direction_required_for_incremental_benefit_claim": true,
+      "secondary": [
+        "PredictedMI-B8 - Recent-B8",
+        "OracleMI-B8 - Recent-B8",
+        "PredictedMI-B8 - Random-B8",
+        "OracleMI-B8 - Random-B8",
+        "OracleMI-B8 - PredictedMI-B8"
+      ],
+      "test_type": "two_sided_zero_null"
+    },
+    "RQ3": {
+      "contrasts": [
+        "PredictedMI-B8 - Full"
+      ],
+      "joint_token_reduction_reporting": true,
+      "n_confirmatory_tests": 1,
+      "name": "Explicit selection necessity / efficiency",
+      "secondary_upper_bound": [
+        "OracleMI-B8 - Full"
+      ],
+      "test_type": "one_sided_non_inferiority"
+    },
+    "RQ4": {
+      "contrasts": [
+        "[PredictedMI-B8 - Semantic-B8]_semantic_missed - [PredictedMI-B8 - Semantic-B8]_semantic_covered",
+        "[PredictedMI-B8 - Recent-B8]_recent_missed - [PredictedMI-B8 - Recent-B8]_recent_covered"
+      ],
+      "n_confirmatory_tests": 2,
+      "name": "Mechanism",
+      "redefine_or_merge_groups_after_quality": false,
+      "secondary": "OracleMI analogues",
+      "test_type": "two_sided_zero_null"
+    }
+  },
+  "confirmatory_family_finalization": "Completes the explicitly pending pre-Judge family decision; older freezes remain historically unchanged.",
+  "construct": {
+    "M_is_unchanged": {
+      "additional_join_checks": [
+        "source_original_indices",
+        "text_sha256"
+      ],
+      "authoritative_gold_resolution": "Frozen AnnoMI client_talk_type: change -> CT, sustain -> ST, neutral -> Neutral.",
+      "client_merge_policy": "Fail on non-singleton client source IDs; no invented aggregation.",
+      "core_labels": [
+        "CT",
+        "ST"
+      ],
+      "current_client_excluded": true,
+      "definition": "Proportion of seven earlier slots occupied by CLIENT units with authoritative gold CT or ST.",
+      "denominator": 7,
+      "denominator_changes_with_speaker_composition": false,
+      "formula": "M_is = sum_{j in selected_earlier_7(i,s)} I(role_j == client AND gold_j in {CT, ST}) / 7",
+      "gold_field": "gold_label",
+      "gold_only": true,
+      "gold_source_path": "inputs/oof/gold_units.jsonl",
+      "gold_source_sha256": "2383736314548f1792996c3bbb40fa525e9523199b359514351f0b5663c52a43",
+      "identity_join": [
+        "transcript_id",
+        "singleton source_utterance_ids"
+      ],
+      "neutral_client_contribution": 0,
+      "per_observation_values_materialized": false,
+      "prohibited_definition_inputs": [
+        "predicted_labels",
+        "predicted_probabilities",
+        "semantic_scores",
+        "response_quality",
+        "goal",
+        "readiness",
+        "value",
+        "barrier",
+        "future_turns"
+      ],
+      "raw_CT_ST_count": "Exactly 7 * M_is; not a separate confirmatory outcome.",
+      "therapist_contribution": 0,
+      "therapist_label": null,
+      "therapist_relabelled_Neutral": false
+    },
+    "S_is_unchanged": {
+      "aggregation": "arithmetic_mean",
+      "alternative_aggregations_forbidden": [
+        "max",
+        "top_k_average",
+        "median",
+        "recency_weighted",
+        "speaker_weighted"
+      ],
+      "computation_performed": false,
+      "current_client_is_query_only_not_an_aggregation_slot": true,
+      "definition": "Arithmetic mean of current-client query similarity to each of the seven selected earlier units.",
+      "denominator": 7,
+      "formula": "S_is = (1/7) * sum_{j in selected_earlier_7(i,s)} cosine(E_query(current_i), E_passage(j))",
+      "frozen_embedding_execution_contract": {
+        "LLM_reranking": false,
+        "TF32": false,
+        "autocast": false,
+        "batch_size": 32,
+        "batch_size_exception": "Only a genuine OOM before any selector artifact permits a smaller batch; record the failure and final batch size without changing scientific scoring.",
+        "classes": [
+          "AutoTokenizer",
+          "AutoModel"
+        ],
+        "cross_encoder": false,
+        "cross_hardware_bitwise_determinism_claimed": false,
+        "dropout": false,
+        "dtype": "float32",
+        "inference_context": "torch.inference_mode() or equivalent no-grad inference",
+        "max_length": 512,
+        "max_length_includes_prefix_and_tokenizer_special_tokens": true,
+        "model_eval": true,
+        "normalization": "L2 normalize each embedding",
+        "padding": "dynamic",
+        "pooling_formula": "sum(last_hidden_state * attention_mask[...,None], axis=tokens) / sum(attention_mask, axis=tokens)",
+        "quantization": false,
+        "required_execution_metadata": [
+          "torch_version",
+          "transformers_version",
+          "tokenizer_version_and_config",
+          "CUDA_version",
+          "device_and_GPU",
+          "batch_size",
+          "resolved_model_revision",
+          "model_weight_SHA256",
+          "precision_and_determinism_flags"
+        ],
+        "reranker": false,
+        "score_scaling": "none",
+        "similarity_formula": "normalized_query @ normalized_candidate.T",
+        "stochastic_sampling": false,
+        "truncation": true
+      },
+      "frozen_model_spec": {
+        "MI_specific_finetuning": false,
+        "MI_specific_information_used": false,
+        "Task_C_before_embedding_gate": "Verify resolved revision and model.safetensors SHA256 against these exact pins; mismatch BLOCKS Task C.",
+        "dynamic_padding": true,
+        "embedding_dtype": "float32",
+        "expected_model_safetensors_sha256": "d741c1a688a6169af0ecb5a047c44645cd992c31e1bf431269f98bba9ae2911a",
+        "language": "English",
+        "max_length": 512,
+        "model_repo": "intfloat/e5-large-v2",
+        "model_revision": "f169b11e22de13617baa190a028a32f3493550b6",
+        "normalization": "L2",
+        "passage_prefix": "passage: ",
+        "pooling": "attention_mask_mean_pooling_last_hidden_state",
+        "preferred_weight_file": "model.safetensors",
+        "query_prefix": "query: ",
+        "similarity": "cosine_equivalent_normalized_dot_product",
+        "task_specific_finetuning": false,
+        "truncation": true,
+        "trust_remote_code": false,
+        "weight_loaded_or_verified_during_Task_B": false
+      },
+      "measurement_policy_distinction": "Semantic-B8 selects by semantic relevance; S_is measures any already-selected context.",
+      "passage_text": "passage: <exact eligible earlier canonical utterance text>",
+      "query_text": "query: <exact current-client canonical utterance text>",
+      "same_measurement_for_all_five_conditions": true,
+      "text_operations": "Only prefix concatenation; no strip, lowercase, stemming, lemmatization, punctuation removal, summary, rewrite, translation, neighbor concatenation or metadata injection."
+    },
+    "U_is_now_resolved": "Q",
+    "definition_source": "protocols/construct_definition/construct_definition.json",
+    "inference_inherited": {
+      "analysis_executed": false,
+      "analysis_unit": "target_condition_observation",
+      "cluster": "transcript_id",
+      "confidence_interval": "two-sided percentile cluster-bootstrap interval",
+      "confidence_level": 0.95,
+      "estimand_weighting": "Each target turn equally weighted in the point estimate; cluster resampling handles dependence, not transcript-equal reweighting.",
+      "five_conditions_linked_within_each_target": true,
+      "method": "transcript_level_cluster_bootstrap",
+      "non_estimable_replicates": "Report non-estimability and support; no zero imputation or silent redraw/redefinition.",
+      "refit_model_per_replicate": true,
+      "replicates": 5000,
+      "report_coefficients": [
+        "beta_M",
+        "beta_S"
+      ],
+      "report_counts": [
+        "targets",
+        "target_condition_observations",
+        "transcript_clusters"
+      ],
+      "resampling": "Draw transcript IDs with replacement; each draw retains all eligible targets, current-paper condition vectors and fixed mechanism labels for that transcript. Duplicated clusters carry multiplicity. Use the same draw for both sides of each paired or interaction contrast.",
+      "seed": 42
+    },
+    "interpretation": "Incremental explanatory / conditional association, NOT a causal effect.",
+    "population_unchanged": {
+      "Full_exclusion_reason": "Different context budget; construct regression is fixed B8.",
+      "Full_included": false,
+      "N": 3824,
+      "conditions": [
+        "Random-B8",
+        "Recent-B8",
+        "Semantic-B8",
+        "PredictedMI-B8",
+        "OracleMI-B8"
+      ],
+      "current_client_final": true,
+      "current_client_units": 1,
+      "same_target_IDs_required": true,
+      "selected_earlier_units": 7,
+      "subset": "shared_16",
+      "target_condition_observations": 19120,
+      "total_units": 8,
+      "transcript_clusters": 118
+    },
+    "primary_model_unchanged": {
+      "additional_covariates": [],
+      "beta_M_interpretation": "Incremental explanatory value / non-redundant information conditional on semantic relevance, target and selector-condition fixed effects. NOT a causal effect.",
+      "causal_effect_claim_allowed": false,
+      "continuous_covariates": [
+        "S_is",
+        "M_is"
+      ],
+      "estimation": "Linear fixed-effects least squares; retain the complete pre-specified model.",
+      "formula": "U_is = alpha_i + gamma_s + beta_S * S_is + beta_M * M_is + epsilon_is",
+      "interactions": [],
+      "model_fitted": false,
+      "non_identifiability": "Report non-estimability; never drop selector effects or redefine covariates to obtain a coefficient.",
+      "post_hoc_covariate_addition_forbidden": true,
+      "primary_estimand": "beta_M",
+      "selector_condition_fixed_effects": true,
+      "target_fixed_effects": true
+    },
+    "source_execution_flags": "Inherited fields describe historical parent freeze execution, not an instruction to fit a model now."
+  },
+  "cross_model_generalization": "Future Work",
+  "delta_Q": 0.25,
+  "effect_estimate": "Mean within-target paired difference; each target equally weighted, not each transcript.",
+  "margin_rationale": "One point in one of four primary integer dimensions changes Q by exactly 0.25, holding the other three fixed.",
+  "margin_selected_before_Judge": true,
+  "mechanism": {
+    "group_reconstruction_performed": false,
+    "no_oracle_core_selected": "Retain descriptively; not in primary missed-vs-covered interactions.",
+    "recent_definitions_unchanged": true,
+    "recent_group_artifact": "inputs/mechanism_groups/recent.jsonl",
+    "semantic_definition_source": "protocols/mechanism_groups/mechanism_definition.json",
+    "semantic_group_artifact": "inputs/mechanism_groups/semantic.jsonl",
+    "semantic_groups_unchanged": {
+      "no_oracle_core_selected": "|O_i| == 0.",
+      "semantic_covered": "|O_i| >= 1 AND O_i is a subset of S_i.",
+      "semantic_missed": "|O_i| >= 1 AND O_i minus S_i is nonempty."
+    }
+  },
+  "missing_or_invalid_Judge_scores": "Do not impute, quality-filter, silently drop pairs or renormalize Q from fewer dimensions. Report and block incomplete confirmatory analyses; this freeze authorizes no Judge calls or reruns.",
+  "primary_outcome": "Q = (D1 + D2 + D3 + D4) / 4",
+  "richer_psychological_information_type_decomposition": "Future Work",
+  "statistical_core": {
+    "bootstrap_replicates": 5000,
+    "bootstrap_seed": 42,
+    "confidence_interval": "two-sided percentile cluster-bootstrap interval",
+    "confidence_level": 0.95,
+    "dependence_cluster": "transcript_id",
+    "estimand_weighting": "Each target turn equally weighted in the point estimate; cluster resampling handles dependence, not transcript-equal reweighting.",
+    "insufficient_group_information": "Report non-estimable contrasts and group/transcript support; never merge/redefine groups after quality inspection.",
+    "mechanism_bootstrap": "Compute both group-specific paired means within each shared cluster draw, then subtract. Do not independently resample groups. Empty-group replicates are undefined, must be counted/reported, and must never be assigned zero or silently redrawn.",
+    "paired_standardized_effect": "d_z = mean(paired differences) / sample SD(paired differences); undefined if SD=0. Report raw paired difference as primary, and do not treat d_z observations as independent transcripts.",
+    "primary_analysis_unit": "target_therapist_turn",
+    "primary_effects": "Paired within-target differences on shared target populations; no unpaired comparison of differently composed conditions.",
+    "primary_uncertainty_method": "paired_transcript_cluster_bootstrap",
+    "resampling": "Draw transcript IDs with replacement; each draw retains all eligible targets, current-paper condition vectors and fixed mechanism labels for that transcript. Duplicated clusters carry multiplicity. Use the same draw for both sides of each paired or interaction contrast.",
+    "reuse_time_provenance": "Reused Experiment 1 and new Experiment 2 responses may come from distinct execution periods. Preserve this limitation; no regeneration or response inspection for this task."
+  },
+  "token_metric_inherited_unchanged": {
+    "accounting_formula": "sum(o200k_base.encode(role) length + o200k_base.encode(content) length) + 4*number_of_messages + 2",
+    "calculation_status": "DEFERRED_PROTOCOL_ONLY",
+    "chat_overhead_method": "approximate_chat_overhead",
+    "conditions": [
+      "T_Recent",
+      "T_Random",
+      "T_Oracle",
+      "T_Predicted",
+      "T_Full"
+    ],
+    "deferral_reason": "Avoid additional runtime dependencies and any contact with active formal-generation worklists or outputs; reconstruct from frozen inputs later without response text.",
+    "definition": "T = frozen TokenCounter.count_chat_messages(messages)[0], with exact frozen system message and chronological role/content messages. Include system, client and therapist history, roles and the frozen chat-overhead convention.",
+    "deterministic_but_not_provider_exact_billed_tokens": true,
+    "message_constructor_source": "/root/autodl-tmp/MI-Predicted-Labeler-v1/execution/workspace/CAMI-main/MI-Context-Length/protocols/generation/snapshot/src/mi_counselor.py",
+    "output_tokens_and_actual_billing": "Separate secondary quantities, not the primary input-context cost.",
+    "primary": "Predicted-B8 vs Full",
+    "primary_metric": "deterministic_tokenizer_derived_full_prompt_input_tokens",
+    "provider_usage": "secondary/audit only, never the sole primary context-cost metric",
+    "regex_or_alternative_tokenizer_fallback": "FORBIDDEN for the primary metric",
+    "secondary": [
+      "Oracle-B8 vs Full",
+      "Recent-B8 vs Full",
+      "Random-B8 vs Full"
+    ],
+    "semantic_cost_scope": "Semantic-B8 may be included after its separate protocol freeze; no inputs or token costs for that baseline are reconstructed in Task A.",
+    "token_counter_source": "/root/autodl-tmp/MI-Predicted-Labeler-v1/execution/workspace/CAMI-main/MI-Context-Length/protocols/generation/snapshot/src/token_counter.py",
+    "token_reduction": "1 - T_strategy/T_full, paired at target; report mean of per-target reductions and ratio of aggregate token totals separately.",
+    "tokenizer": {
+      "backend": "tiktoken",
+      "backend_version": "0.14.0",
+      "encoding_name": "o200k_base",
+      "is_model_native": true,
+      "resolution_method": "encoding_for_model",
+      "token_count_method": "model_matched_tiktoken",
+      "tokenizer_name": "tiktoken_model:gpt-5.4"
+    }
+  },
+  "version": "v1"
+}

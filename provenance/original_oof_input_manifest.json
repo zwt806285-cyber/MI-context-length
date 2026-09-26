@@ -1,0 +1,127 @@
+{
+  "input_audit": {
+    "check_groups": [
+      "frozen manifest identity",
+      "all input SHA256 pins",
+      "training config/model/revision/seed/epochs",
+      "stable unit ID bijection",
+      "gold field equality",
+      "unit-fold field equality",
+      "transcript-held-out fold assignment",
+      "training/held-out disjointness and coverage",
+      "fold provenance protocol hash",
+      "per-row predictor and training-set hashes",
+      "finite normalized probabilities",
+      "hard-label argmax",
+      "frozen confusion matrix and point metrics"
+    ],
+    "fold_counts": {
+      "0": 1058,
+      "1": 978,
+      "2": 928,
+      "3": 902,
+      "4": 951
+    },
+    "note": "Check groups are documented here after OOF freezing; no unsupported claim of 58 prespecified checks.",
+    "record_count": 4817,
+    "status": "PASS",
+    "transcript_count": 133
+  },
+  "input_sha256": {
+    "fold_transcripts": "4cc4b0eb496d7728c36b9b36a48e9673264ddddb4600f83c1941844f9a875994",
+    "fold_units": "f3fbaf16b9f2fa305b5425953446a7bd2b9b95393c98080326e86671fcbf63df",
+    "frozen_audit": "014eb58069c384c37105800f9a2468f9c29fc177ea12e23b7a7a3ec47e5155ae",
+    "frozen_metrics": "65f422f4f04e40537bec1b9031f892cef03da18302636473e55aebe1ed5c4d27",
+    "gold": "2383736314548f1792996c3bbb40fa525e9523199b359514351f0b5663c52a43",
+    "manifest": "3de0cf14b7f5d6aae2930cf1c4507d67afc29f29d4dcc8d28f2518f544bdeddc",
+    "oof": "3d172eca8bbf254559eabc704dd24220350b266ea601c250413d638f5336d0ff",
+    "provenance": "07327795b03596db1019625dbc0e959440644ee0564269247d44949d55000224",
+    "training_protocol": "38be021f93e7e90a61a95df4303455aedf5f37d9dd7dddf6e7ae8a263f46de4b"
+  },
+  "performance": {
+    "accuracy": {
+      "ci95": [
+        0.6242918780833595,
+        0.6729301962968619
+      ],
+      "estimate": 0.6485364334648122
+    },
+    "accuracy_difference": {
+      "ci95": [
+        -0.03468997716621893,
+        0.04439705198373208
+      ],
+      "estimate": 0.004567157982146575
+    },
+    "balanced_accuracy": {
+      "ci95": [
+        0.564368980376733,
+        0.6166176529642697
+      ],
+      "estimate": 0.5888708217591873
+    },
+    "bootstrap": {
+      "cluster": "transcript_id",
+      "interval": "2.5th/97.5th percentile; linear/type-7 interpolation",
+      "replicates": 5000,
+      "rng": "Python random.Random MT19937",
+      "sampling": "133 clusters with replacement per replicate",
+      "seed": 42,
+      "weighting": "all rows from each sampled cluster, including multiplicity"
+    },
+    "confusion_matrix": [
+      [
+        616,
+        167,
+        391
+      ],
+      [
+        98,
+        284,
+        159
+      ],
+      [
+        523,
+        355,
+        2224
+      ]
+    ],
+    "ece_definition": "top-label expected calibration error; 10 equal-width confidence bins [0,.1),[.1,.2),...,[.9,1]; implementation uses min(floor(10*confidence),9); weighted mean absolute difference between within-bin accuracy and mean maximum probability",
+    "inference_role": "retrospective descriptive OOF performance; not frozen confirmatory inference",
+    "macro_f1": {
+      "ci95": [
+        0.5412240427769885,
+        0.5861828869450582
+      ],
+      "estimate": 0.5632155427279734
+    },
+    "majority_accuracy": {
+      "ci95": [
+        0.5988393151519794,
+        0.6885545169544033
+      ],
+      "estimate": 0.6439692754826656
+    },
+    "mcc": {
+      "ci95": [
+        0.3265022285558847,
+        0.4011050260092485
+      ],
+      "estimate": 0.3615305611684061
+    },
+    "n_client_units": 4817,
+    "n_transcript_clusters": 133,
+    "per_class_f1": {
+      "CT": 0.5109912899211946,
+      "Neutral": 0.7569775357385977,
+      "ST": 0.4216778025241277
+    },
+    "top_label_ece_10_equal_width": {
+      "ci95": [
+        0.0961268105951697,
+        0.14119604967987137
+      ],
+      "estimate": 0.1166859527136098
+    }
+  }
+}

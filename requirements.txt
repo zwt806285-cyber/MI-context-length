@@ -1,0 +1,4 @@
+# Python 3.10.21 observed on the frozen cloud analysis host
+numpy==2.2.6
+requests==2.34.2
+tiktoken==0.14.0

@@ -1,0 +1,104 @@
+{
+  "analysis_status": "POST_FREEZE_SUPPLEMENTARY",
+  "api_calls": 0,
+  "bootstrap": {
+    "cluster": "transcript_id",
+    "confidence_interval": "95% percentile",
+    "p_value": "one-sided empirical plus-one; p=(b+1)/(B+1), with b equal to number of bootstrap DeltaQ <= 0",
+    "replicates": 5000,
+    "seed": 42,
+    "type": "paired transcript-cluster bootstrap"
+  },
+  "conditions": {
+    "budget": 8,
+    "earlier_history_budget": 7,
+    "intervention": "CoreInject-B8",
+    "reference": "Semantic-B8"
+  },
+  "confidence_interval_computed": false,
+  "coreinject_source": {
+    "path": "inputs/core_inject/canonical_judge_outcomes.jsonl",
+    "sha256": "db3e23b456298454bc9c10760599f76213005a88bb1c2331539c2ea579846ad9"
+  },
+  "forbidden_posthoc_actions": [
+    "No outcome-based target exclusion.",
+    "No change of primary direction.",
+    "No seed selection after effect inspection.",
+    "No regeneration or re-Judging based on outcomes.",
+    "No subgroup promoted to primary analysis.",
+    "No retrospective expansion of Holm family."
+  ],
+  "inherited_analysis_protocol": {
+    "path": "protocols/analysis_scope/analysis_protocol.json",
+    "sha256": "b6bdf789a2c0aa8e237a0d68e074507ce33cb425b2e389ba1baa354292cd8b39"
+  },
+  "interpretation_boundary": "This intervention restores all omitted Oracle-core evidence while maintaining B=8. Because it frequently replaces multiple selected units and many resulting contexts are identical to OracleMI-B8, a positive effect is evidence for full-core restoration under fixed budget, not the isolated causal effect of one evidence unit or of coverage as an abstract variable.",
+  "intervention_label": "full-core restoration ablation",
+  "judge_calls": 0,
+  "mechanism_group_source": {
+    "path": "inputs/mechanism_groups/semantic.jsonl",
+    "sha256": "8fd854de7a2f129695a6bbdcccb0cc7621e41e89d3327cb5c8a5df1d3b2d02f9"
+  },
+  "multiplicity": {
+    "holm_adjustment": false,
+    "reason": "Single prespecified primary contrast within a post-freeze supplementary analysis; not added to original RQ4 confirmatory family."
+  },
+  "outcome_aggregate_computed": false,
+  "p_value_computed": false,
+  "paired_effect_computed": false,
+  "population": {
+    "cohort": "semantic_missed",
+    "parent": "formal RQ4 semantic mechanism cohort",
+    "targets": 863,
+    "transcript_clusters": 101
+  },
+  "primary_estimand": {
+    "formula": "mean_i(Q_CoreInject_B8_i - Q_Semantic_B8_i)",
+    "name": "paired target-level mean DeltaQ",
+    "pairing_key": "sample_id",
+    "primary_unit": "target counselor turn"
+  },
+  "primary_hypothesis": {
+    "H0": "DeltaQ <= 0",
+    "H1": "DeltaQ > 0",
+    "direction": "CoreInject-B8 greater than Semantic-B8"
+  },
+  "protocol_name": "CoreInject-B8 full-core restoration supplementary analysis v2",
+  "scientific_role": "intervention-style supplementary mechanism test",
+  "score_mapping": {
+    "CoreInject-B8": {
+      "D1": "D1_contextual_grounding",
+      "D2": "D2_mi_adherence",
+      "D3": "D3_motivational_attunement",
+      "D4": "D4_therapeutic_helpfulness",
+      "D5": "D5_naturalness_coherence",
+      "Q": "Q"
+    },
+    "Semantic-B8": {
+      "D1": "D1",
+      "D2": "D2",
+      "D3": "D3",
+      "D4": "D4",
+      "D5": "D5",
+      "Q": "Q"
+    }
+  },
+  "secondary_descriptive": {
+    "critical_violation": "descriptive counts/proportions only; never exclusionary",
+    "dimension_p_values": false,
+    "dimensions": [
+      "D1",
+      "D2",
+      "D3",
+      "D4",
+      "D5"
+    ],
+    "statistics": "condition means, paired mean differences and 95% transcript-cluster bootstrap CIs"
+  },
+  "semantic_binding_rows": 863,
+  "semantic_source": {
+    "path": "inputs/judge_analysis/base_scores.jsonl",
+    "sha256": "806f50def8c05e8d7e4d6d1b3c5d76c22d35c348eb44ee50cb07e1e4042d3718",
+    "source_role": "authoritative frozen Base-1000 score table"
+  }
+}

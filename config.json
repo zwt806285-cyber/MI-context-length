@@ -1,0 +1,5 @@
+{
+  "project_root": "source",
+  "python_executable": null,
+  "tokenizer_cache": "source/external/o200k_base_cache"
+}
